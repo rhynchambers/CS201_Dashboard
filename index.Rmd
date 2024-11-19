@@ -1,5 +1,5 @@
 ---
-title: "CS201 Flexdashboard Practice"
+title: "C201"
 author: "Rhyn Chambers"
 date: 11/18/24
 output: 
@@ -9,9 +9,7 @@ output:
     source_code: embed
     theme:
       bootswatch: yeti
-      navbar:
-        -{title: "Rhyn Chambers", href: "https://rhynchambers.github.io", align: righ}
-        -{icon: " fa fa-github", href: "https://github.com/rhynchambers", align: right, target: blank}
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -20,27 +18,32 @@ library(tidyverse)
 library(plotly)
 ```
 
-Column {data-width=650}
------------------------------------------------------------------------
+## Column {data-width="650"}
 
 ### Chart A
 
 ```{r}
-
+ggplot(starwars, aes(x=name, y=height)) +
+  geom_bar(stat="identity")
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
+## Column {data-width="350"}
 
 ### Chart B
 
 ```{r}
+p <- ggplot(starwars, aes(x=homeworld, fill=gender)) + 
+  geom_bar()
 
+ggplotly(p)
 ```
 
 ### Chart C
 
 ```{r}
+starwars <- starwars %>%
+  select(name, height, mass, gender, species, homeworld)
 
+knitr::kable(starwars)
+  
 ```
-
